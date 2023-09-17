@@ -1,6 +1,11 @@
 console.log("hello");
 const express = require('express');
 const app = express();
+const cors = require('cors');
+
+app.use(cors());
+
+
 
 app.get('/', (req, resp) => {
 let token;
