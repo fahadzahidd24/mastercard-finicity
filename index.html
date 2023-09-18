@@ -1,0 +1,80 @@
+<div id="connect-container" style="height: 800px"></div>
+<script>
+  const refreshAccounts = (token, customerId, appKey) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      token: token,
+      customerId: customerId,
+      appKey: appKey,
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("http://localhost:3000/refreshAccounts", requestOptions)
+      .then((response) => response.json())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  };
+
+  var requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  let url, customerId, token, appKey;
+
+  fetch("https://mastercard-finicity.vercel.app/", requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+      url = result.link;
+      token = result.token;
+      customerId = result.customerId;
+      appKey = result.appKey;
+      console.log("url", url);
+      window.finicityConnect.launch(result.link, {
+        selector: "#connect-container",
+        overlay: "rgba(255,255,255, 0)",
+        success: (event) => {
+          console.log("Yay! User went through Connect", event);
+          refreshAccounts(token, customerId, appKey);
+        },
+        cancel: (event) => {
+          console.log("The user cancelled the iframe", event);
+        },
+        error: (error) => {
+          console.error(
+            "Some runtime error was generated during insideConnect ",
+            error
+          );
+        },
+        loaded: () => {
+          console.log(
+            "This gets called only once after the iframe has finished loading "
+          );
+        },
+        route: (event) => {
+          console.log(
+            "This is called as the user navigates through Connect ",
+            event
+          );
+        },
+        user: (event) => {
+          console.log(
+            "This is called as the user interacts with Connect ",
+            event
+          );
+        },
+      });
+    })
+    .catch((error) => console.log("error", error));
+
+  // Frontend Javascript running on web app
+</script>

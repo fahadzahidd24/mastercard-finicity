@@ -2,11 +2,21 @@ console.log("hello");
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const bodyParser = require("body-parser");
+ 
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
 
+
 app.post('/refreshAccounts', (req, res) => {
+    console.log('refreshAccounts');  
     const { customerId, token, appKey } = req.body;
+    console.log("customerId", customerId);
+    console.log("token", token);
+    console.log("appKey", appKey);
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Accept", "application/json");
@@ -23,18 +33,20 @@ app.post('/refreshAccounts', (req, res) => {
     };
 
 
+
     fetch(`https://api.finicity.com/aggregation/v1/customers/${customerId}/accounts`, requestOptions)
         .then(response => response.json())
-        .then(result => res.json({
+        .then(result => res.status(200).json({
             data: result
         }))
         .catch(error => {
             console.log('error', error);
-            res.status(400).json({
+            return res.status(400).json({
                 error: error
-            })
+            });
         });
 })
+
 
 app.get('/', (req, resp) => {
     let token, customerId;
@@ -107,6 +119,7 @@ app.get('/', (req, resp) => {
     })
 
 });
+
 
 
 app.listen(3000, () => console.log('Server listening at http://localhost:3000'));
