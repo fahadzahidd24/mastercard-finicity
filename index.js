@@ -11,44 +11,44 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 
-app.post('/refreshAccounts', (req, res) => {
-    console.log('refreshAccounts');  
-    const { customerId, token, appKey } = req.body;
-    console.log("customerId", customerId);
-    console.log("token", token);
-    console.log("appKey", appKey);
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Accept", "application/json");
-    myHeaders.append("Finicity-App-Token", token);
-    myHeaders.append("Finicity-App-Key", appKey);
+// app.post('/refreshAccounts', (req, res) => {
+//     console.log('refreshAccounts');  
+//     const { customerId, token, appKey } = req.body;
+//     console.log("customerId", customerId);
+//     console.log("token", token);
+//     console.log("appKey", appKey);
+//     var myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json");
+//     myHeaders.append("Accept", "application/json");
+//     myHeaders.append("Finicity-App-Token", token);
+//     myHeaders.append("Finicity-App-Key", appKey);
 
-    var raw = JSON.stringify({});
+//     var raw = JSON.stringify({});
 
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-
-
-    fetch(`https://api.finicity.com/aggregation/v1/customers/${customerId}/accounts`, requestOptions)
-        .then(response => response.json())
-        .then(result => res.status(200).json({
-            data: result
-        }))
-        .catch(error => {
-            console.log('error', error);
-            return res.status(400).json({
-                error: error
-            });
-        });
-})
+//     var requestOptions = {
+//         method: 'POST',
+//         headers: myHeaders,
+//         body: raw,
+//         redirect: 'follow'
+//     };
 
 
-app.get('/', (req, resp) => {
+
+//     fetch(`https://api.finicity.com/aggregation/v1/customers/${customerId}/accounts`, requestOptions)
+//         .then(response => response.json())
+//         .then(result => res.status(200).json({
+//             data: result
+//         }))
+//         .catch(error => {
+//             console.log('error', error);
+//             return res.status(400).json({
+//                 error: error
+//             });
+//         });
+// })
+
+
+// app.get('/', (req, resp) => {
     let token, customerId;
     fetch("https://api.finicity.com/aggregation/v2/partners/authentication", {
         method: "POST",
@@ -66,7 +66,7 @@ app.get('/', (req, resp) => {
     }).then(async res2 => {
         console.log("res2", res2);
         token = res2.token;
-        return fetch("https://api.finicity.com/aggregation/v2/customers/active", {
+        return fetch("https://api.finicity.com/aggregation/v2/customers/testing", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -118,7 +118,7 @@ app.get('/', (req, resp) => {
         console.log("error:", err)
     })
 
-});
+// });
 
 
 
