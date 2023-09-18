@@ -54,12 +54,12 @@ app.get('/', (req, resp) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Finicity-App-Key": "64fbfd97b243ce354d5211e2283b340d",
+            "Finicity-App-Key": "1eeb64fc1a278bc6568f48aae3ac7304",
             "Accept": "application/json",
         },
         body: JSON.stringify({
-            "partnerId": "2445584284357",
-            "partnerSecret": "wNB8rKJWoL7TkkbtUdqA"
+            "partnerId": "2445584263170",
+            "partnerSecret": "LkY04f7kDkLVXAWpuhIr"
         })
     }).then(res => {
         return res.json();
@@ -71,7 +71,7 @@ app.get('/', (req, resp) => {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Finicity-App-Key": "64fbfd97b243ce354d5211e2283b340d",
+                "Finicity-App-Key": "1eeb64fc1a278bc6568f48aae3ac7304",
                 "Finicity-App-Token": res2.token,
             },
             body: JSON.stringify({
@@ -90,11 +90,11 @@ app.get('/', (req, resp) => {
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json",
-                    "Finicity-App-Key": "64fbfd97b243ce354d5211e2283b340d",
+                    "Finicity-App-Key": "1eeb64fc1a278bc6568f48aae3ac7304",
                     "Finicity-App-Token": res2.token
                 },
                 body: JSON.stringify({
-                    "partnerId": "2445584284357",
+                    "partnerId": "2445584263170",
                     "customerId": res4.id,
                 })
             }).then(res5 => {
@@ -105,7 +105,7 @@ app.get('/', (req, resp) => {
                     link: res6.link,
                     customerId: customerId,
                     token: token,
-                    appKey: "64fbfd97b243ce354d5211e2283b340d"
+                    appKey: "1eeb64fc1a278bc6568f48aae3ac7304"
                 })
 
             }).catch(err => {
