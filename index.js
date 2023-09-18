@@ -63,7 +63,8 @@ fetch("https://api.finicity.com/aggregation/v2/partners/authentication", {
             return resp.status(200).json({
                 link : res6.link,
                 customerId : customerId,
-                token : token
+                token : token,
+                appKey: "64fbfd97b243ce354d5211e2283b340d"
             })
             
         }).catch(err => {
