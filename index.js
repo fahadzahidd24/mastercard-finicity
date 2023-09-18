@@ -8,7 +8,7 @@ app.use(cors());
 
 
 app.get('/', (req, resp) => {
-let token;
+let token,customerId;
 fetch("https://api.finicity.com/aggregation/v2/partners/authentication", {
     method: "POST",
     headers: {
@@ -24,6 +24,7 @@ fetch("https://api.finicity.com/aggregation/v2/partners/authentication", {
     return res.json();
 }).then(async res2 => {
     console.log("res2", res2);
+    token = res2.token;
     return fetch("https://api.finicity.com/aggregation/v2/customers/testing", {
         method: "POST",
         headers: {
@@ -42,6 +43,7 @@ fetch("https://api.finicity.com/aggregation/v2/partners/authentication", {
         return res3.json();
     }).then(async res4 => {
         console.log("res4 ==>", res4);
+        customerId = res4.id;
         return fetch("https://api.finicity.com/connect/v2/generate", {
             method: "POST",
             headers: {
@@ -60,6 +62,8 @@ fetch("https://api.finicity.com/aggregation/v2/partners/authentication", {
             console.log(res6);
             return resp.status(200).json({
                 link : res6.link,
+                customerId : customerId,
+                token : token
             })
             
         }).catch(err => {
