@@ -50,16 +50,19 @@ app.post('/refreshAccounts', (req, res) => {
 
 app.get('/', (req, resp) => {
     let token, customerId;
+    const partnerId = "2445584268593";
+    const partnerSecret = "TzXYj9bovRytqzgJ7beC";
+    const appKey = "4aea3531faad7238d5e2192d4cf33486";
     fetch("https://api.finicity.com/aggregation/v2/partners/authentication", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Finicity-App-Key": "1eeb64fc1a278bc6568f48aae3ac7304",
+            "Finicity-App-Key": appKey,
             "Accept": "application/json",
         },
         body: JSON.stringify({
-            "partnerId": "2445584263170",
-            "partnerSecret": "LkY04f7kDkLVXAWpuhIr"
+            "partnerId": partnerId,
+            "partnerSecret": partnerSecret
         })
     }).then(res => {
         return res.json();
@@ -71,13 +74,13 @@ app.get('/', (req, resp) => {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Finicity-App-Key": "1eeb64fc1a278bc6568f48aae3ac7304",
+                "Finicity-App-Key": appKey,
                 "Finicity-App-Token": res2.token,
             },
             body: JSON.stringify({
-                "username": `johnnn${Math.random() * 100000}customer`,
-                "firstName": "customer",
-                "lastName": "Doe",
+                "username": `customer_${Date.now() + Math.floor(Math.random() * 1000)}`,
+                "firstName": "John",
+                "lastName": "Smith",
             })
         }).then(res3 => {
             console.log(res3);
@@ -90,11 +93,11 @@ app.get('/', (req, resp) => {
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json",
-                    "Finicity-App-Key": "1eeb64fc1a278bc6568f48aae3ac7304",
+                    "Finicity-App-Key": appKey,
                     "Finicity-App-Token": res2.token
                 },
                 body: JSON.stringify({
-                    "partnerId": "2445584263170",
+                    "partnerId": partnerId,
                     "customerId": res4.id,
                 })
             }).then(res5 => {
@@ -105,7 +108,7 @@ app.get('/', (req, resp) => {
                     link: res6.link,
                     customerId: customerId,
                     token: token,
-                    appKey: "1eeb64fc1a278bc6568f48aae3ac7304"
+                    appKey: appKey
                 })
 
             }).catch(err => {
