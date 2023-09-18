@@ -69,7 +69,7 @@ app.get('/', (req, resp) => {
     }).then(async res2 => {
         console.log("res2", res2);
         token = res2.token;
-        return fetch("https://api.finicity.com/aggregation/v2/customers/active", {
+        return fetch("https://api.finicity.com/aggregation/v2/customers/testing", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
