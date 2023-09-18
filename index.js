@@ -66,7 +66,7 @@ app.get('/', (req, resp) => {
     }).then(async res2 => {
         console.log("res2", res2);
         token = res2.token;
-        return fetch("https://api.finicity.com/aggregation/v2/customers/testing", {
+        return fetch("https://api.finicity.com/aggregation/v2/customers/active", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -75,8 +75,8 @@ app.get('/', (req, resp) => {
                 "Finicity-App-Token": res2.token,
             },
             body: JSON.stringify({
-                "username": `johnnn${Math.random() * 100000}ssddaaqq`,
-                "firstName": "John",
+                "username": `johnnn${Math.random() * 100000}customer`,
+                "firstName": "customer",
                 "lastName": "Doe",
             })
         }).then(res3 => {
