@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
     fetch("https://api.finicity.com/aggregation/v2/partners/authentication", requestOptions)
         .then(response => response.json())
         .then(result => res.status(200).json({ data: result }))
-        .catch(error => console.log('error', error));
+        .catch(error => res.status(500).json({ error: error }));
 
 })
 
