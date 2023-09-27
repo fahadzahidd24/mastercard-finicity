@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
     const { partnerId, partnerSecret, appKey } = req.body;
 
     var myHeaders = new Headers();
