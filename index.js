@@ -15,32 +15,28 @@ app.use(cors());
 app.get('/', (req, res) => {
     const { partnerId, partnerSecret, appKey } = req.body;
 
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Finicity-App-Key", appKey);
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("Cookie", "incap_ses_1406_2596171=bsjpb1qmayK59OPwRySDE/5MFGUAAAAA78gNmgPe0wc7+mTLJxKWSw==; incap_ses_1460_2596171=N3WyKUUDM1d+4LQT9/ZCFA0/FGUAAAAA8gqymDmc1Mizu7wAYmgtTA==; incap_ses_959_2596171=l1PyCN7I0Qt50w0vdw5PDd9MFGUAAAAACKewQH+9ZqiQj8d/LzZVzg==; nlbi_2596171=g30eHiSoFFPeRVV6pbFNgwAAAADTZK3ss4Evpmsog+w59nI6; visid_incap_2596171=l0QFd/2ASxS+JHGbIBLkUhsj3mQAAAAAQUIPAAAAAADxP1sQ50e25gIe7z/5ZLbg");
 
-    let data = JSON.stringify({
+    var raw = JSON.stringify({
         "partnerId": partnerId,
         "partnerSecret": partnerSecret
     });
 
-    let config = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: 'https://api.finicity.com/aggregation/v2/partners/authentication',
-        headers: {
-            'Content-Type': 'application/json',
-            'Finicity-App-Key': appKey,
-            'Accept': 'application/json',
-            'Cookie': 'incap_ses_1406_2596171=bsjpb1qmayK59OPwRySDE/5MFGUAAAAA78gNmgPe0wc7+mTLJxKWSw==; incap_ses_1460_2596171=N3WyKUUDM1d+4LQT9/ZCFA0/FGUAAAAA8gqymDmc1Mizu7wAYmgtTA==; incap_ses_959_2596171=l1PyCN7I0Qt50w0vdw5PDd9MFGUAAAAACKewQH+9ZqiQj8d/LzZVzg==; nlbi_2596171=g30eHiSoFFPeRVV6pbFNgwAAAADTZK3ss4Evpmsog+w59nI6; visid_incap_2596171=l0QFd/2ASxS+JHGbIBLkUhsj3mQAAAAAQUIPAAAAAADxP1sQ50e25gIe7z/5ZLbg'
-        },
-        data: data
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
     };
 
-    axios.request(config)
-        .then((response) => {
-            return res.status(200).json({ data: response.data });
-        })
-        .catch((error) => {
-            return res.status(500).json({ error: error });
-        });
+    fetch("https://api.finicity.com/aggregation/v2/partners/authentication", requestOptions)
+        .then(response => response.json())
+        .then(result => res.status(200).json({ data: result }))
+        .catch(error => console.log('error', error));
 
 })
 
