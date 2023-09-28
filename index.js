@@ -99,6 +99,31 @@ app.post('/generate', (req, res) => {
 })
 
 
+app.post('/refresh', (req, res) => {
+    const { appKey, token, partnerId, customerId } = req.body;
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("Finicity-App-Token", token);
+    myHeaders.append("Finicity-App-Key", appKey);
+    myHeaders.append("Cookie", "visid_incap_2596171=l0QFd/2ASxS+JHGbIBLkUhsj3mQAAAAAQUIPAAAAAADxP1sQ50e25gIe7z/5ZLbg");
+
+    var raw = JSON.stringify({});
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch(`https://api.finicity.com/aggregation/v2/customers/${customerId}/accounts`, requestOptions)
+        .then(response => response.json())
+        .then(result => res.status(200).send("refreshed >>>", result))
+        .catch(error => res.status(500).json({ error: error }));
+})
+
+
 
 
 
