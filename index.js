@@ -140,7 +140,7 @@ app.post('/accounts', (req, res) => {
         redirect: 'follow'
     };
 
-    fetch(`https://api.finicity.com/aggregation/v1/${customerId}/7004227623/accounts`, requestOptions)
+    fetch(`https://api.finicity.com/aggregation/v1/${customerId}/accounts`, requestOptions)
         .then(response => response.json())
         .then(result => res.status(200).send(result))
         .catch(error => res.status(500).json({ error: error }));;
