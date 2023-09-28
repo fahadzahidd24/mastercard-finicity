@@ -118,9 +118,9 @@ app.post('/refresh', (req, res) => {
         redirect: 'follow'
     };
 
-    fetch(`https://api.finicity.com/aggregation/v1/customers/${customerId}/accounts`, requestOptions)
-        .then(response => response.json())
-        .then(result => res.send({message:"refreshed >>>", data: result}))
+    fetch(`https://api.finicity.com/aggregation/v2/customers/${customerId}/accounts`, requestOptions)
+        // .then(response => res.send("refreshed >>>"))
+        .then(result => res.send({message:"refreshed >>>"}))
         .catch(error => res.status(400).json({ error: error }));
 })
 
