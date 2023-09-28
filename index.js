@@ -120,8 +120,8 @@ app.post('/refresh', (req, res) => {
 
     fetch(`https://api.finicity.com/aggregation/v1/customers/${customerId}/accounts`, requestOptions)
         .then(response => response.json())
-        .then(result => res.status(200).send("refreshed >>>", result))
-        .catch(error => res.status(500).json({ error: error }));
+        .then(result => res.send({message:"refreshed >>>", data: result}))
+        .catch(error => res.status(400).json({ error: error }));
 })
 
 
