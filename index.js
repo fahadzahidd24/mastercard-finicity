@@ -101,7 +101,7 @@ app.post('/generate', (req, res) => {
 
 app.post('/refresh', (req, res) => {
     const { appKey, token, customerId } = req.body;
-    res.status.send({appKey, token, customerId});
+    res.status(200).send({appKey, token, customerId});
     // var myHeaders = new Headers();
     // myHeaders.append("Content-Type", "application/json");
     // myHeaders.append("Accept", "application/json");
