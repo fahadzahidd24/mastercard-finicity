@@ -14,18 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 
-app.get('/json', (req,res)=>{
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-      };
-      
-      fetch("https://jsonplaceholder.typicode.com/users", requestOptions)
-        .then(response => response.json())
-        .then(result => res.status(200).json(result))
-        .catch(error => res.status(500).json({ error: error }));
-})
-
 
 app.post('/token', (req, res) => {
     const { partnerId, partnerSecret, appKey } = req.body;
