@@ -51,7 +51,7 @@ app.post('/customer', (req, res) => {
     const currentDate = new Date();
     const seed = currentDate.getDate(); // Use the day of the month as a seed
     const random = Math.floor(Math.random() * seed * 100000); // Adjust as needed
-    const username = 'customer_' + random + 'c';
+    const username = 'customer_' + 'asdasdasdasdasdasdsadasdqweasdq2easedqw3ease3qw' + 'c';
     var raw = JSON.stringify({
         "username": username,
         "firstName": firstName,
