@@ -14,18 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 
-app.get('/json', (req,res)=>{
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-      };
-      
-      fetch("https://jsonplaceholder.typicode.com/users", requestOptions)
-        .then(response => response.json())
-        .then(result => res.status(200).json(result))
-        .catch(error => res.status(500).json({ error: error }));
-})
-
 
 app.post('/token', (req, res) => {
     const { partnerId, partnerSecret, appKey } = req.body;
@@ -63,7 +51,7 @@ app.post('/customer', (req, res) => {
     myHeaders.append("Finicity-App-Key", appKey);
     myHeaders.append("Finicity-App-Token", token);
     myHeaders.append("Cookie", "incap_ses_1406_2596171=bsjpb1qmayK59OPwRySDE/5MFGUAAAAA78gNmgPe0wc7+mTLJxKWSw==; incap_ses_1460_2596171=N3WyKUUDM1d+4LQT9/ZCFA0/FGUAAAAA8gqymDmc1Mizu7wAYmgtTA==; incap_ses_959_2596171=TH/EDpo1GUWq9Ccvdw5PDV5gFGUAAAAAG5VEjRPv56bFjQnnMkQDHA==; nlbi_2596171=g30eHiSoFFPeRVV6pbFNgwAAAADTZK3ss4Evpmsog+w59nI6; visid_incap_2596171=l0QFd/2ASxS+JHGbIBLkUhsj3mQAAAAAQUIPAAAAAADxP1sQ50e25gIe7z/5ZLbg");
-    const username = 'customer_' + Math.floor(Math.random() * 100000000) + 'c';
+    const username = 'customer_' + Math.random() + 'c';
     var raw = JSON.stringify({
         "username": username,
         "firstName": firstName,
