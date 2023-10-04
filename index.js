@@ -50,7 +50,7 @@ app.post('/customer', (req, res) => {
     myHeaders.append("Cookie", "incap_ses_1321_2596171=uLs8JdFslG0tbwTgoyhVEhp5HWUAAAAAUhp877fqTt/tN0hEaRPT7Q==; incap_ses_1559_2596171=vRLWQ1lj2kf7GIjGtq6iFW54HWUAAAAASZsTZPKMwDP3To9c4M9ptA==; nlbi_2596171=bNgxY4WsLzexsiBzpbFNgwAAAACvW4hRdsvD9xo15dQy+Iwf; visid_incap_2596171=l0QFd/2ASxS+JHGbIBLkUhsj3mQAAAAAQUIPAAAAAADxP1sQ50e25gIe7z/5ZLbg");
     
     var raw = JSON.stringify({
-      "username": "customer_1696asdasd1231231223123qweasdqe1231430881",
+      "username": "customer_1696asdasdasd67987987654431120",
       "firstName": "John",
       "lastName": "Smith"
     });
