@@ -76,7 +76,7 @@ app.post('/customer', (req, res) => {
     fetch("https://api.finicity.com/aggregation/v2/customers/testing", requestOptions)
         .then(response => response.json())
         .then(result => res.status(200).send(result))
-        .catch(error => console.log(error);
+        .catch(error => console.log(error));
 
 })
 
