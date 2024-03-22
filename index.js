@@ -63,7 +63,8 @@ app.post('/customer', (req, res) => {
     var raw = JSON.stringify({
         "username": username,
         "firstName": firstName,
-        "lastName": lastName
+        "lastName": lastName,
+        "applicationId": username+1,
     });
 
     var requestOptions = {
