@@ -71,7 +71,7 @@ app.post('/customer', (req, res) => {
         redirect: 'follow'
     };
 
-    fetch("https://api.finicity.com/aggregation/v2/customers/testing", requestOptions)
+    fetch("https://api.finicity.com/aggregation/v2/customers/active", requestOptions)
         .then(response => response.json())
         .then(result => res.status(200).send(result))
         .catch(error => res.status(500).json({ error: error }));
