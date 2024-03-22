@@ -57,20 +57,12 @@ app.post('/customer', (req, res) => {
     const seed = currentDate.getDate(); // Use the day of the month as a seed
     const random = Math.floor(Math.random() * seed * 100); // Adjust as needed
     const username = 'customer_' + random + 'c';
-    console.log("2@");
 
 
     var raw = JSON.stringify({
-        // "username": username,
-        // "firstName": firstName,
-        // "lastName": lastName,
-        // "applicationId": username+1,
-         "username": "customerusername1",
-  "firstName": "John",
-  "lastName": "Smith",
-  "applicationId": "123456789",
-  "phone": "1-801-984-4200",
-  "email": "myname@mycompany.com"
+        "username": username,
+        "firstName": firstName,
+        "lastName": lastName
     });
 
     var requestOptions = {
