@@ -45,6 +45,7 @@ app.post('/token', (req, res) => {
 
 app.post('/customer', (req, res) => {
     const { appKey, token, firstName, lastName } = req.body;
+    console.log(req.body);
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Finicity-App-Token", token);
@@ -56,6 +57,7 @@ app.post('/customer', (req, res) => {
     const seed = currentDate.getDate(); // Use the day of the month as a seed
     const random = Math.floor(Math.random() * seed * 100); // Adjust as needed
     const username = 'customer_' + random + 'c';
+    console.log("2@);
 
 
     var raw = JSON.stringify({
@@ -74,7 +76,7 @@ app.post('/customer', (req, res) => {
     fetch("https://api.finicity.com/aggregation/v2/customers/testing", requestOptions)
         .then(response => response.json())
         .then(result => res.status(200).send(result))
-        .catch(error => res.status(500).json({ error: error }));
+        .catch(error => console.log(error);
 
 })
 
