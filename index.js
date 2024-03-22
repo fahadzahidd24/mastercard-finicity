@@ -61,10 +61,16 @@ app.post('/customer', (req, res) => {
 
 
     var raw = JSON.stringify({
-        "username": username,
-        "firstName": firstName,
-        "lastName": lastName,
-        "applicationId": username+1,
+        // "username": username,
+        // "firstName": firstName,
+        // "lastName": lastName,
+        // "applicationId": username+1,
+         "username": "customerusername1",
+  "firstName": "John",
+  "lastName": "Smith",
+  "applicationId": "123456789",
+  "phone": "1-801-984-4200",
+  "email": "myname@mycompany.com"
     });
 
     var requestOptions = {
