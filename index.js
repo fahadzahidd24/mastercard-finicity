@@ -53,10 +53,26 @@ app.post('/customer', (req, res) => {
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Cookie", "incap_ses_1321_2596171=uLs8JdFslG0tbwTgoyhVEhp5HWUAAAAAUhp877fqTt/tN0hEaRPT7Q==; incap_ses_1559_2596171=vRLWQ1lj2kf7GIjGtq6iFW54HWUAAAAASZsTZPKMwDP3To9c4M9ptA==; nlbi_2596171=bNgxY4WsLzexsiBzpbFNgwAAAACvW4hRdsvD9xo15dQy+Iwf; visid_incap_2596171=l0QFd/2ASxS+JHGbIBLkUhsj3mQAAAAAQUIPAAAAAADxP1sQ50e25gIe7z/5ZLbg");
 
+    // const currentDate = new Date();
+    // const seed = currentDate.getDate(); // Use the day of the month as a seed
+    // const random = Math.floor(Math.random() * seed * 100); // Adjust as needed
+    // const username = 'customer_' + random + 'c';
+
     const currentDate = new Date();
-    const seed = currentDate.getDate(); // Use the day of the month as a seed
-    const random = Math.floor(Math.random() * seed * 100); // Adjust as needed
-    const username = 'customer_' + random + 'c';
+    // Using multiple components of the date to enhance uniqueness
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1; // Adding 1 because getMonth() returns 0-11
+    const day = currentDate.getDate();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+    const seconds = currentDate.getSeconds();
+
+    // Generate a random number (consider increasing the range of Math.random() * 10000 for more randomness)
+    const random = Math.floor(Math.random() * 10000);
+
+    // Concatenate all parts to form a unique username
+    const username = `customer_${year}${month}${day}_${hours}${minutes}${seconds}_${random}`;
+    
 
 
     var raw = JSON.stringify({
